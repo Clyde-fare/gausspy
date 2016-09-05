@@ -19,6 +19,7 @@ import random
 import string
 import numpy as np
 
+#TODO move pdb2pqr path to .cc_notebook.ini
 def protonate(atoms, 
               return_params=False, 
               non_standard_indices=None,
@@ -29,7 +30,7 @@ def protonate(atoms,
               force_capping=False,
               debug_level=1, 
               logfile='',
-              pdb2pqr_path="/Users/tam10/Utilities/pdb2pqr-osx-bin64-2.1.0/"):
+              pdb2pqr_path="/home/clyde/Global_Software/pdb2pqr-linux-bin64-2.1.0"):
     """Protonate an atoms object with standard and non-standard residues.
     
     debug_levels:
@@ -470,7 +471,7 @@ def get_oniom_model_from_indices(target,oniom_list):
     oniom_extraction.set_calculator(Gaussian(label = 'oniom_extraction', basis = "oniom", method = "oniom(HF:UFF)=OnlyInputFiles"))
     oniom_extraction.calc.oniom_coord_params['layers'] = [indices]
     oniom_extraction.calc.oniom_coord_params['layer_mults'] = [1, 1]
-    oniom_extraction.calc.set_job(time=72 ,nodes=16, memory=48000)
+    oniom_extraction.calc.set_job(time=1 ,nodes=1, memory=1000)
     oniom_extraction.calc.start(frc = True)
     
     atoms = oniom_extraction[oniom_list].take(indices_in_tags = True)
