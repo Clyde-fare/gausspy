@@ -149,8 +149,9 @@ def protonate(atoms,
         except(IOError):
             os.chdir(pwd)
             raise IOError("RED Output {r} not found. Scratch directory must be empty".format(r = rn))
-        nsr_amber = read_pdb('nsr_capped_prot-out.pdb').take(residues = nn)
+        nsr_amber = read_pdb('nsr_capped_prot-out.pdb')
         nsr_amber.calculate_ambers_pdbs(debug = (d > 1))
+        nsr_amber = nsr_amber.take(residues = nn)
         nsr_amber.set_amber_charges(nsr_charges.get_amber_charges())
         nsr_amber.set_resnums(ni[0])
         
